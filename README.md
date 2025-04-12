@@ -1,65 +1,88 @@
-# :spades:  blackjack
-https://jacquelynmarcella.github.io/blackjack/
 
-A JavaScript based Blackjack game. Beat the dealer by getting as close to 21 without going over.
+# 雲端運算期末專案計畫書
 
-![](http://www.jacquelynmarcella.com/img/blackjack-1.jpg)
-![](http://www.jacquelynmarcella.com/img/blackjack-mobile.jpg)
+## 專案名稱
+**基於雲端平台之人機互動21點（Blackjack）網頁遊戲**
 
-## :diamonds: Requirements
-* Game is playable against dealer
-* Game is winnable and winner is displayed 
-* Game has directions on how to play    
-* Appropriate Use of GitHub and deployed on Github Pages    
-* Long files appropriately split up   
-* Appropriate use of functions
-* DRY Code    
-* Draw detected (if applicable)
-* Good ease of triggering events
+## 一、研究背景
+隨著雲端運算技術逐漸普及，許多原需下載安裝的應用程式與遊戲開始向雲端轉移，以提高易用性及擴展性。透過雲端部署技術，使用者僅需透過瀏覽器便能即時進行互動式應用，降低使用門檻並提升便利性。本專案選擇經典撲克牌遊戲「21點（Blackjack）」作為主題，透過HTML5、JavaScript與Node.js技術，建立具備雲端儲存資料能力的互動式網頁遊戲，展現雲端技術實際應用的價值。
 
-## :diamonds: Technologies Used
-* jQuery + jQuery UI
-* Materialize CSS Framework
+## 二、研究動機
+- 透過實作網頁互動遊戲，熟悉前後端分離與雲端運算的實務。
+- 學習使用雲端資料庫儲存遊戲紀錄，掌握MongoDB Atlas與Render平台部署技巧。
+- 提升個人雲端應用開發能力，增加未來投入更複雜雲端專案的實作經驗。
 
-## :diamonds: Process
-1. Stubbed out overall game board structure and integrated initial card data.
-    * Plotted out rules, dealer/player decks, hand totals, and key action buttons.
-    * Installed Materialize framework and created grid system, which I utilized throughout the whole project to routinely check for how the integrated content was scaling smaller screen sizes.
-    * Created cards.js file to store full deck of cards including images, value, and name.
-1. Generated start game functionality to get the cards on the board.
-    * Randomly sort the array to "shuffle" the deck.
-    * Loop through the original deck and push/pop cards into both the dealer and player hands.
-    * Display these card images on the appropriate sections of the screen.
-1. Developed initial player interaction fuctionality ("hit" and "stand").
-1. Built out dealer logic.
-    * Dealer's actions are based on standard blackjack rules (hit if under 17, stand if 17 or above).
-1. Created win logic and detection for aces.
-    * Aces can hold values of either 11 or 1.
-    * Default value for aces is 11, however, if the user goes over 21 the aces will reduce to 1.
-    * Got initial working win logic up, which was adjusted several times.
-1. Added in chip betting functionality and ongoing chip balance total tracking.
-   * Added in double down functionality once the betting process was up and running.
-1. Added split card functionality (required a lot of reworking of win logic and player interactions since there are now 2 decks).
-1. Worked through automated turn switching functionality to keep the game moving if the player goes over 21 on their current deck (without them needing to press "stand").
-1. Worked on an announce winner screen that shows who won, current chip balance, and final hand totals.
-   * Implemented play again button to reset card deck values and start a new game.
-1. Added ability to toggle in/out rules section using jQuery UI plugin.
-1. Implemented CSS animations and transitions using keyframes to make the card game feel more interactive.
-   * Dealer's second card appears to flip over when it is eventually displayed.
-   * Cards move in on the screen and appear to be coming out of the deck.
-   * Got cards to dynamically stack using offset properties as they are added in the JavaScript.
-   * If the deck is split, the inactive deck scales down to both signify to the user what deck they are currently on, as well as make room on the page to fit both decks. When the user moves onto the second deck, the first deck scales down and the second deck scales up.
-   * Set timeouts regularly to give a chance for these animations to complete before moving on to the next move.
-1. Added modal for the rare chance that a player draws 2 aces - they need to be able to choose to split or not before the game automatically reduces their aces to value 1.
-1. Further adjusted and tested layout for responsiveness using the Materialize framework.
-1. Added local storage to chip balance.
+## 三、研究目的
+- 完成一個能即時與電腦互動之21點網頁遊戲。
+- 將遊戲每次結果自動存入雲端資料庫（MongoDB Atlas）。
+- 前後端分別部署於Render平台，實踐完整雲端應用流程。
 
-## :diamonds: Next Steps
-* Further test the double ace drawing scenario to ensure it is working consistently.
+## 四、研究規劃
 
-## :diamonds: Resources Used
-* CSS Framework: http://materializecss.com/
-* Card Deck Graphics: https://opengameart.org/content/cards-set
-* Chip Icons: 
-   * https://thenounproject.com/dorxela/
-   * https://thenounproject.com/meisandra0583/
+### （一）資料來源與蒐集方式
+- 參考21點基本規則，並設計人機對戰遊戲邏輯。
+- 蒐集現有21點遊戲設計參考，制定適合網頁遊戲的介面及操作方式。
+
+### （二）實作技術與工具介紹
+| 技術/工具 | 用途說明 |
+|:---|:---|
+| HTML5 | 遊戲介面架構建置 |
+| CSS3 | 介面視覺優化 |
+| JavaScript | 遊戲互動邏輯與事件控制 |
+| Node.js + Express | 建置API後端，處理資料傳輸 |
+| MongoDB Atlas | 雲端儲存遊戲紀錄 |
+| Render.com | 雲端部署平台，管理前後端服務 |
+
+### （三）實作規劃與步驟
+1. **前端介面設計與遊戲邏輯建置**
+    - 建構基礎HTML網頁，並使用CSS進行排版設計。
+    - 以JavaScript設計發牌、算牌、判斷勝負等基本遊戲邏輯。
+
+2. **後端伺服器與API實作**
+    - 透過Node.js搭配Express框架建立後端API伺服器。
+    - API設計簡易RESTful接口，供前端傳送遊戲結果。
+
+3. **資料庫串接與雲端儲存**
+    - 使用MongoDB Atlas建立雲端資料庫。
+    - 設計遊戲紀錄的資料模型，包含結果、點數、時間戳記等。
+
+4. **雲端平台部署**
+    - 前端透過Render Static Site部署。
+    - 後端以Render Web Service部署。
+    - 完成測試與效能調校，確保遊戲穩定運行。
+
+### （四）專案時程規劃
+| 時間 | 工作項目 |
+|:---|:---|
+| 第一週 | 完成前端設計與基本遊戲功能 |
+| 第二週 | 完成後端伺服器與API建置 |
+| 第三週 | 資料庫連接與雲端資料儲存 |
+| 第四週 | 前後端部署，最終整合測試 |
+
+## 五、預期成果
+- 提供一個人機互動21點網頁遊戲，操作簡便、介面友善。
+- 遊戲紀錄自動保存至雲端，實現資料管理及查詢便利性。
+- 成功展示雲端運算於前後端分離應用上的便利性及實務性。
+
+## 六、系統架構
+```
+使用者 (瀏覽器)
+│
+│ 存取網站遊玩21點
+▼
+Render前端(Static Site)
+│
+│ 透過API (POST)
+▼
+Render後端(Node.js Express)
+│
+│ 資料儲存
+▼
+MongoDB Atlas (雲端資料庫)
+```
+
+## 七、結語
+透過本專案的實作，不僅達成雲端運算課程之實務目標，亦有效強化個人在雲端平台實作上的能力，為未來參與更大型雲端專案奠定基礎。
+
+---
+
